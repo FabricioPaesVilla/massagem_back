@@ -1,0 +1,10 @@
+
+
+***tb_pagamentos: id_pagamento(PK), id_agendamento, valor_pago, metodo_pagamento(cartão,pix,dinheiro), status_pagamento(pendente,pago,cancelado), data_pagamento.
+
+- verificar métodos de cobrança, se é por hora (acrescimo de valor, ex: 15min) ou um valor fixo;
+- Tipos de massagem:Drenagem linfática, massagem relaxante, shiatsu, Modeladora, liberacao miofascial, shirodhara;
+- Aprovação de logo;
+- Tipos de pacotes; 
+- Podemos adicionar uma parte de vendas de produtos que minha avó vende
+**tb_vendas

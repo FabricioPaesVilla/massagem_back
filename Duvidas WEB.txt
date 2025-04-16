@@ -1,0 +1,3 @@
+------- Anotações -------
+Front: No menu do usuário (clientes), verificar com o professor se temos como fazer um campo chamado "Assinatura"
+para adicionar cartão e debitar automáticamente em quesito de planos de massagens
