@@ -6,19 +6,10 @@
 **tb_vendas
 
 
-*************
-tb_pagamentos: 
-id_pagamento(PK), 
-id_agendamento, 
-valor_pago, 
-metodo_pagamento(cartão,pix,dinheiro), 
-status_pagamento(pendente,pago,cancelado), 
-data_pagamento
-*************
-
 
 ****************************************************
 
+essas são todas as tabelas:
 
 *************
 tb_adm:
@@ -29,12 +20,24 @@ cpf
 *************
 
 *************
+tb_massagem:
+titulo(PK),
+descricao,
+img
+*************
+
+******?******
+
+decidindo se vai ter rotina de expurgo e se vai salvar absolutamente todos clientes 
+
+*************
 tb_agenda:
 Id(PK),
 date,
 endereco,
 tipo_massagem,
 valor,
+
 email,
 nome,
 endereco,
@@ -51,13 +54,5 @@ telefone,
 cpf
 *************
 
-*************
-tb_massagem:
-titulo(PK),
-descricao,
-img
-*************
 
 
-
-******?******

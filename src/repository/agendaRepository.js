@@ -2,16 +2,14 @@ import connection from './connection.js'
 
 export async function listar() {
     const comando = `SELECT id_agenda as id,
-                          dia,
-                          hora,
-                          fk_id_cliente as IdCliente,
+                          date,
                           endereco as endereço,
                           tipo_massagem,
-                          valor
+                          valor,
+                          fk_id_cliente as IdCliente
                      FROM tb_agenda`
     let [info] = await connection.query(comando);
     return info;
-
 }
 
 export async function adicionar(agenda) {
