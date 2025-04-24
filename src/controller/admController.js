@@ -1,4 +1,4 @@
-import { adicionar, alterar, listar, remover } from "../repository/admRepository.js";
+import { adicionar, alterar, listar, remover, verificar} from "../repository/admRepository.js";
 import { Router } from "express";
 const endpoints = Router();
 
@@ -34,5 +34,12 @@ endpoints.delete('/adm/:email', async (req, resp) => {
     resp.send({ admsAfetados });
 })
 
+endpoints.post('/admLogin', async (req, resp) => {
+    let email = req.body.email;
+    let password = req.body.password
+
+    let admVerificado = await verificar(email, password);
+    resp.send({admVerificado});
+})
 
 export default endpoints;

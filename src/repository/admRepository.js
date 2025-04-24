@@ -35,3 +35,18 @@ export async function remover(email) {
     let [info] = await connection.query(comando, [email]);
     return info.affectedRows;
 }
+
+export async function verificar(email, password) {
+    const comando = `SELECT email_adm as email,
+                            senha_adm as senha 
+                            FROM tb_adm`
+    let [info] = await connection.query(comando);
+
+    let email_db = info.email_adm;
+    let senha = info.senha_adm;
+     if (email == email_db && password == senha) {
+        return true;
+     } else {
+        return false;
+     }
+}

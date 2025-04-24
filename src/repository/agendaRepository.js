@@ -2,7 +2,7 @@ import connection from './connection.js'
 
 export async function listar() {
     const comando = `SELECT id_agenda as id,
-                          date,
+                          date as date,
                           endereco as endereço,
                           tipo_massagem,
                           valor,
@@ -13,23 +13,22 @@ export async function listar() {
 }
 
 export async function adicionar(agenda) {
-    const comando = `INSERT INTO tb_agenda (dia, hora, fk_id_cliente, endereco, tipo_massagem, valor)
-VALUES (?,?,?,?,?,?)`
+    const comando = `INSERT INTO tb_agenda (date, endereco, tipo_massagem, valor, fk_id_cliente)
+VALUES (?,?,?,?,?)`
 
-    let [info] = await connection.query(comando, [agenda.dia, agenda.hora, agenda.IdCliente, agenda.endereço, agenda.tipo_massagem, agenda.valor]);
+    let [info] = await connection.query(comando, [agenda.date, agenda.endereço, agenda.tipo_massagem, agenda.valor, agenda.IdCliente]);
     return info.insertId;
 }
 
 export async function alterar(id, agenda) {
     const comando = `UPDATE tb_agenda
-                      SET dia = ?,
-                      hora = ?,
-                      fk_id_cliente = ?,
+                      SET date = ?,
                       endereco = ?,
                       tipo_massagem = ?,
                       valor = ?
+                      fk_id_cliente = ?,
                       WHERE id_agenda = ?`
-    let [info] = await connection.query(comando, [agenda.dia, agenda.hora, agenda.IdCliente, agenda.endereço, agenda.tipo_massagem, agenda.valor, id]);
+    let [info] = await connection.query(comando, [agenda.date, agenda.endereço, agenda.tipo_massagem, agenda.valor, agenda.IdCliente, id]);
     return info.affectedRows;
 }
 
