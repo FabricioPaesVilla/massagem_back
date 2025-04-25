@@ -1,12 +1,11 @@
 import connection from './connection.js'
 
 export async function listar() {
-    const comando = `SELECT id_cliente as id,
-                          nm_cliente as nome,
-                          email_cliente as email,
-                          endereco as endereço,
-                          telefone,
-                          cpf_cliente as cpf
+    const comando = `SELECT email as email,
+                          nome as nome,
+                          endereco as endereco,
+                          telefone as telefone,
+                          cpf as cpf
                      FROM tb_cliente`
     let [info] = await connection.query(comando);
     return info;
@@ -14,28 +13,27 @@ export async function listar() {
 }
 
 export async function adicionar(cliente) {
-    const comando = `INSERT INTO  tb_cliente (nm_cliente, email_cliente, endereco, telefone, cpf_cliente)
+    const comando = `INSERT INTO  tb_cliente (email, nome, endereco, telefone, cpf)
 VALUES (?,?,?,?,?)`
 
-    let [info] = await connection.query(comando, [cliente.nome, cliente.email, cliente.endereço, cliente.cpf, cliente.telefone]);
+    let [info] = await connection.query(comando, [cliente.email, cliente.nome, cliente.endereco, cliente.telefone, cliente.cpf]);
     return info.insertId;
 }
 
-export async function alterar(id, cliente) {
+export async function alterar(email, cliente) {
     const comando = `UPDATE tb_cliente
-                      SET nm_cliente = ?,
-                      email_cliente = ?,
+                      SET nome = ?,
                       endereco = ?,
                       telefone = ?,
-                      cpf_cliente = ?
-                      WHERE id_cliente = ?`
-    let [info] = await connection.query(comando, [cliente.nome, cliente.email, cliente.endereço, cliente.cpf, cliente.telefone, id]);
+                      cpf = ?
+                      WHERE email = ?`
+    let [info] = await connection.query(comando, [cliente.nome, cliente.endereço, cliente.telefone, cliente.cpf, email]);
     return info.affectedRows;
 }
 
-export async function remover(id) {
+export async function remover(email) {
     const comando = `DELETE FROM tb_cliente
-                     WHERE id_cliente = ?`
-    let [info] = await connection.query(comando, [id]);
+                     WHERE email = ?`
+    let [info] = await connection.query(comando, [email]);
     return info.affectedRows;
 }

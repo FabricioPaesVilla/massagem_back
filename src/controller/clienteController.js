@@ -14,18 +14,18 @@ endpoints.post('/cliente', async (req, resp) => {
     resp.send({novoCliente});
 })
 
-endpoints.put('/cliente/:id', async (req, resp) => {
-    let id = req.params.id;
+endpoints.put('/cliente/:email', async (req, resp) => {
+    let email = req.params.email;
     let cliente = req.body;
     
-    let clienteModificado = await alterar(id, cliente);
+    let clienteModificado = await alterar(email, cliente);
     resp.send({clienteModificado});
 })
 
-endpoints.delete('/cliente/:id', async (req, resp) => {
-    let id = req.params.id;
+endpoints.delete('/cliente/:email', async (req, resp) => {
+    let email = req.params.email;
 
-    let clienteModificado = await remover(id);
+    let clienteModificado = await remover(email);
     if (clienteModificado == 0) {
         return resp.status(404).send({ erro: 'Cliente não encontrado.' });
     }

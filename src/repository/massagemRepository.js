@@ -19,10 +19,11 @@ VALUES (?,?,?)`
 
 export async function alterar(titulo, massagem) {
     const comando = `UPDATE tb_massagem
-                      SET descricao = ?,
+                      SET titulo = ?,
+                      descricao = ?,
                       img = ?
                       WHERE titulo = ?`
-    let [info] = await connection.query(comando, [massagem.descricao, massagem.img, titulo]);
+    let [info] = await connection.query(comando, [massagem.titulo, massagem.descricao, massagem.img, titulo]);
     return info.affectedRows;
 }
 

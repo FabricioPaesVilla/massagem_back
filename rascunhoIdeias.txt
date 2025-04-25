@@ -37,12 +37,7 @@ date,
 endereco,
 tipo_massagem,
 valor,
-
-email,
-nome,
-endereco,
-telefone,
-cpf
+email (FK(tb_client))
 *************
 
 *************

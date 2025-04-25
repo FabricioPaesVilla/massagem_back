@@ -1,15 +1,11 @@
 import agenda from './controller/agendaController.js'
-import cadAdm from './controller/cadastroAdmController.js'
-import cadCli from './controller/cdClienteController.js'
-import logCliente from './controller/loginClientesController.js'
-import logAdm from './controller/loginAdmController.js'
+import adm from './controller/admController.js'
 import cliente from './controller/clienteController.js'
+import massagem from './controller/massagemController.js'
 
 export default function adicionarRotas(servidor) {
     servidor.use(agenda);
-    servidor.use(cadAdm);
-    servidor.use(cadCli);
-    servidor.use(logCliente);
-    servidor.use(logAdm);
+    servidor.use(adm);
     servidor.use(cliente);
+    servidor.use(massagem);
 }
