@@ -1,36 +1,78 @@
-import { adicionar, alterar, listar, remover } from "../repository/agendaRepository.js";
+import { consultarAgendaService } from '../services/agenda/consultarAgendaService.js'
+import { consultarAgendaPorIdService } from '../services/agenda/consultarAgendaPorIdService.js'
+import { adicionarAgendaService } from '../services/agenda/adicionarAgendaService.js'
+import { alterarAgendaService } from '../services/agenda/alterarAgendaService.js'
+import { removerAgendaService } from '../services/agenda/removerAgendaService.js'
+
 import { Router } from "express";
 const endpoints = Router();
 
 endpoints.get('/agenda', async (req, resp) => {
-    let agendamento = await listar();
-    resp.send(agendamento);
+    try {
+        let agendas = req.body.date;
+
+        let registros = await consultarAgendaService(agendas);
+
+        resp.send(registros);
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
+})
+
+endpoints.get('/agenda/:id', async (req, resp) => {
+    try {
+        let agendas = req.body.id;
+
+        let registros = await consultarAgendaPorIdService(agendas);
+
+        resp.send(registros);
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
 })
 
 endpoints.post('/agenda', async (req, resp) => {
-    let agenda = req.body;
-    
-    let novoAgendamento = await adicionar(agenda);
-    resp.send({novoAgendamento});
+    try {
+        let Agendas = req.body;
+
+        let id = await adicionarAgendaService(Agendas);
+
+        resp.send({
+            id: id
+        });
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
 })
 
 endpoints.put('/agenda/:id', async (req, resp) => {
-    let id = req.params.id;
-    let agenda = req.body;
-    
-    let agendamentoAfetado = await alterar(id, agenda);
-    resp.send({agendamentoAfetado});
+    try {
+        let id = req.params.id;
+        let agendas = req.body;
+
+        await alterarAgendaService(id, agendas);
+
+        resp.status(204).send();
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
 })
 
 endpoints.delete('/agenda/:id', async (req, resp) => {
-    let id = req.params.id;
+    try {
+        let id = req.params.id;
 
-    let agendamentoAfetado = await remover(id);
-    if (agendamentoAfetado == 0) {
-        return resp.status(404).send({erro: 'Agendamento não encontrado.'});
+        await removerAgendaService(id);
+
+        resp.status(204).send();
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
     }
-    
-    resp.send({agendamentoAfetado});
 })
 
 

@@ -5,7 +5,12 @@
 - Podemos adicionar uma parte de vendas de produtos que minha avó vende
 **tb_vendas
 
-
+try {
+        
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
 
 ****************************************************
 

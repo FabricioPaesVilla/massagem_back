@@ -1,36 +1,76 @@
-import { adicionar, alterar, listar, remover } from "../repository/clienteRepository.js";
+import consultarClienteService from "../services/cliente/consultarClienteService.js";
+import consultarClientePorIdService from "../services/cliente/consultarClientePorIdService.js"
+import adicionarClienteService from "../services/cliente/adicionarClienteService.js"
+import alterarClienteService from "../services/cliente/alterarClienteService.js"
 import { Router } from "express";
 const endpoints = Router();
 
 endpoints.get('/cliente', async (req, resp) => {
-    let cliente = await listar();
-    resp.send(cliente);
+    try {
+        let clientes = req.body.nome;
+
+        let registros = await consultarClienteService(clientes);
+
+        resp.send(registros);
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
+})
+
+endpoints.get('/cliente/:id', async (req, resp) => {
+    try {
+        let clientes = req.body.id;
+
+        let registros = await consultarClientePorIdService(clientes);
+
+        resp.send(registros);
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
 })
 
 endpoints.post('/cliente', async (req, resp) => {
-    let cliente = req.body;
-    
-    let novoCliente = await adicionar(cliente);
-    resp.send({novoCliente});
-})
+    try {
+        let cliente = req.body;
 
-endpoints.put('/cliente/:email', async (req, resp) => {
-    let email = req.params.email;
-    let cliente = req.body;
-    
-    let clienteModificado = await alterar(email, cliente);
-    resp.send({clienteModificado});
-})
+        let id = await adicionarClienteService(cliente);
 
-endpoints.delete('/cliente/:email', async (req, resp) => {
-    let email = req.params.email;
-
-    let clienteModificado = await remover(email);
-    if (clienteModificado == 0) {
-        return resp.status(404).send({ erro: 'Cliente não encontrado.' });
+        resp.send({
+            id: id
+        });
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
     }
-    
-    resp.send({ clienteModificado });
+})
+
+endpoints.put('/cliente/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+        let cliente = req.body;
+
+        await alterarClienteService(id, cliente);
+
+        resp.status(204).send();
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
+})
+
+endpoints.delete('/cliente/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+
+        await removerClienteService(id);
+
+        resp.status(204).send();
+    } catch (err) {
+        logErro(err)
+        resp.status(400).send(criarErro(err))
+    }
 })
 
 
