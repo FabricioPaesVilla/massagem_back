@@ -46,12 +46,11 @@ export async function consultarMassagemPorTitulo(titulo) {
 }
 
 export async function adicionarMassagem(massagem) {
-    const comando = `INSERT INTO tb_massagem (titulo, descricao, img)
-                        VALUES (?,?,?)`
+    const comando = `INSERT INTO tb_massagem (titulo, descricao)
+                        VALUES (?,?)`
 
     let [info] = await connection.query(comando, [  massagem.titulo, 
-                                                    massagem.descricao, 
-                                                    massagem.img
+                                                    massagem.descricao
                                                 ]);
     return info.insertId;
 }
@@ -59,13 +58,11 @@ export async function adicionarMassagem(massagem) {
 export async function alterarMassagem(id, massagem) {
     const comando = `UPDATE tb_massagem
                       SET titulo = ?,
-                      descricao = ?,
-                      img = ?
+                      descricao = ?
                       WHERE id_massagem = ?`
     let resposta = await connection.query(comando, [  
                                                     massagem.titulo, 
-                                                    massagem.descricao, 
-                                                    massagem.img, 
+                                                    massagem.descricao,  
                                                     id
                                                  ]);
     

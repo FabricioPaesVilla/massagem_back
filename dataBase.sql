@@ -10,7 +10,7 @@ CREATE TABLE tb_massagem (
     id_massagem INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
     descricao TEXT NOT NULL,
-    img VARCHAR(100) NOT NULL
+    img VARCHAR(100) 
 );
 DROP TABLE tb_massagem;
 CREATE TABLE tb_cliente(
