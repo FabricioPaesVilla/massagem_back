@@ -9,9 +9,9 @@ export async function consultarMassagem(titulo) {
                         FROM tb_massagem
                         WHERE titulo like ?
                         `
-                
+                        console.log("b")    
     let resposta = await connection.query(comando, ['%' + titulo + '%']);
-    
+    console.log("c")
     let registros = resposta[0];
     
     return registros;

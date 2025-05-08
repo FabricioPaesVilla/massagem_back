@@ -11,7 +11,7 @@ const endpoints = Router();
 
 endpoints.get('/massagem', async (req, resp) => {
     try {
-        let massagems = req.query.titulo;
+        let massagems = req.body.titulo;
 
         let registros = await consultarMassagemService(massagems);
 
