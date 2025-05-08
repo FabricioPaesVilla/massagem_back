@@ -1,5 +1,5 @@
-import { consultarMassagemPorId } from "../../repository/massagemRepository";
-import { validarMassagemUnico } from "../../validations/massagem/massagemValidation";
+import { consultarMassagemPorId } from "../../repository/massagemRepository.js";
+import { validarMassagemUnico } from "../../validations/massagemValidation.js";
 
 
 export default async function consultarMassagemPorIdService(id) {

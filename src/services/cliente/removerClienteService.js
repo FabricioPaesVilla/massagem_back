@@ -1,4 +1,4 @@
-import { removerCliente } from "../../repository/clienteRepository";
+import { removerCliente } from "../../repository/clienteRepository.js";
 
 export default async function removerMassagemService(id) {
     let linhasAfetadas = await removerCliente(id);

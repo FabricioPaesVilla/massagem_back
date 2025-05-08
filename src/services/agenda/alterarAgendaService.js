@@ -1,5 +1,5 @@
-import { alterarAgenda } from "../../repository/agendaRepository";
-import { validarNovaAgenda } from "../../validations/agendaValidation";
+import { alterarAgenda } from "../../repository/agendaRepository.js";
+import { validarNovaAgenda } from "../../validations/agendaValidation.js";
 
 export default async function AlterarAgendaService(id, agenda) {
     validarNovaAgenda(agenda);

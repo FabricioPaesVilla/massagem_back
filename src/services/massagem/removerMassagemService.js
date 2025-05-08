@@ -1,4 +1,4 @@
-import { removerMassagem } from "../../repository/massagemRepository";
+import { removerMassagem } from "../../repository/massagemRepository.js";
 
 
 export default async function removerMassagemService(id) {

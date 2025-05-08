@@ -1,7 +1,7 @@
-import { adicionarAgenda, consultarAgendaPorDate } from "../../repository/agendaRepository";
-import { validarAgendaIgual, validarNovaAgenda } from "../../validations/agendaValidation";
+import { adicionarAgenda, consultarAgendaPorDate } from "../../repository/agendaRepository.js";
+import { validarAgendaIgual, validarNovaAgenda } from "../../validations/agendaValidation.js";
 
-export default async function adicionarAlterarService(agenda) {
+export default async function adicionarAgendaService(agenda) {
     validarNovaAgenda(agenda);
 
     let resistros = await consultarAgendaPorDate((agenda.agenda));

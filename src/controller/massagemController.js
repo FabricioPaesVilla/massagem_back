@@ -1,4 +1,3 @@
-//import { adicionar, alterar, consultarMassagem, consultarMassagemPorId, remover } from "../repository/massagemRepository.js";
 import { Router } from "express";
 import consultarMassagemService from "../services/massagem/consultarMassagemService.js";
 import consultarMassagemPorIdService from "../services/massagem/consultarMassagemPorIdService.js";
@@ -12,8 +11,8 @@ const endpoints = Router();
 
 endpoints.get('/massagem', async (req, resp) => {
     try {
-        let massagems = req.body.titulo;
- 
+        let massagems = req.query.titulo;
+
         let registros = await consultarMassagemService(massagems);
 
         resp.send(registros);

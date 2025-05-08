@@ -1,5 +1,5 @@
 import { consultarClientePorId } from '../../repository/clienteRepository.js'
-import { validarClienteUnico } from '../../validations/cliente/clienteValidation.js'
+import { validarClienteUnico } from '../../validations/clienteValidation.js'
 
 export default async function consultarMassagemPorIdService(id) {
     let registros = await consultarClientePorId(id);

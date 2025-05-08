@@ -12,6 +12,19 @@ CREATE TABLE tb_massagem (
     descricao TEXT NOT NULL,
     img VARCHAR(100) 
 );
+
+SELECT id_massagem, titulo, descricao FROM tb_massagem;
+
+INSERT INTO tb_massagem (titulo, descricao) VALUES ("a","aa");
+
+SELECT id_massagem,
+                            titulo,
+                            descricao,
+                            img
+                        FROM tb_massagem
+                        WHERE titulo like "a";
+
+
 DROP TABLE tb_massagem;
 CREATE TABLE tb_cliente(
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,

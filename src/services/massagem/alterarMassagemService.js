@@ -1,5 +1,5 @@
-import { alterarMassagem } from "../../repository/massagemRepository";
-import { validarNovaMassagem } from "../../validations/massagem/massagemValidation";
+import { alterarMassagem } from "../../repository/massagemRepository.js";
+import { validarNovaMassagem } from "../../validations/massagemValidation.js";
 
 
 export default async function AlterarMassagemService(id, massagem) {

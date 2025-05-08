@@ -5,7 +5,7 @@ const connection = await mysql.createConnection({
   database: process.env.MYSQL_DB,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PWD,
-
+  
   typeCast: function (field, next) {
     if (field.type === 'TINY' && field.length === 1) {
       return field.string() === '1';

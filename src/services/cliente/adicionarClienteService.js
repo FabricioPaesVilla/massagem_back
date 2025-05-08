@@ -1,5 +1,5 @@
-import { adicionarCliente, consultarClientePorEmail } from "../../repository/clienteRepository";
-import {validarNovoCliente, validarClienteIgual } from '../../validations/cliente/clienteValidation.js'
+import { adicionarCliente, consultarClientePorEmail } from "../../repository/clienteRepository.js";
+import {validarNovoCliente, validarClienteIgual } from '../../validations/clienteValidation.js'
 
 export default async function adicionarClienteService(cliente) {
     validarNovoCliente(cliente);

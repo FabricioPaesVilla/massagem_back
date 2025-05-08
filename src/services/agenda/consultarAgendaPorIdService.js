@@ -1,5 +1,5 @@
-import { consultarAgendaPorId } from "../../repository/agendaRepository";
-import { validarAgendaUnico } from "../../validations/agendaValidation";
+import { consultarAgendaPorId } from "../../repository/agendaRepository.js";
+import { validarAgendaUnico } from "../../validations/agendaValidation.js";
 
 export default async function consultarMassagemPorIdService(id) {
     let registros = await consultarAgendaPorId(id);

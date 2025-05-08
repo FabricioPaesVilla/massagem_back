@@ -1,5 +1,5 @@
-import { alterarCliente } from "../../repository/clienteRepository";
-import { validarNovoCliente } from "../../validations/cliente/clienteValidation";
+import { alterarCliente } from "../../repository/clienteRepository.js";
+import { validarNovoCliente } from "../../validations/clienteValidation.js";
 
 export default async function AlterarClienteService(id, cliente) {
     validarNovoCliente(cliente);

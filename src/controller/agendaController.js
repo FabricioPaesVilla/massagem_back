@@ -1,8 +1,8 @@
-import { consultarAgendaService } from '../services/agenda/consultarAgendaService.js'
-import { consultarAgendaPorIdService } from '../services/agenda/consultarAgendaPorIdService.js'
-import { adicionarAgendaService } from '../services/agenda/adicionarAgendaService.js'
-import { alterarAgendaService } from '../services/agenda/alterarAgendaService.js'
-import { removerAgendaService } from '../services/agenda/removerAgendaService.js'
+import  consultarAgendaService  from '../services/agenda/consultarAgendaService.js'
+import  consultarAgendaPorIdService  from '../services/agenda/consultarAgendaPorIdService.js'
+import  adicionarAgendaService from '../services/agenda/adicionarAgendaService.js'
+import alterarAgendaService  from '../services/agenda/alterarAgendaService.js'
+import  removerAgendaService  from '../services/agenda/removerAgendaService.js'
 
 import { Router } from "express";
 const endpoints = Router();

@@ -1,4 +1,4 @@
-import { removerAgenda } from "../../repository/agendaRepository";
+import { removerAgenda } from "../../repository/agendaRepository.js";
 
 export default async function removerMassagemService(id) {
     let linhasAfetadas = await removerAgenda(id);

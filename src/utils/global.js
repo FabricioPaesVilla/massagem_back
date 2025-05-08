@@ -1,4 +1,4 @@
-import { horaAtual } from "./datetime";
+import { horaAtual } from "./datetime.js";
 
 global.criarErro = function criarErro(err){
     let obj = {
