@@ -11,6 +11,9 @@ import adicionarRotas from './router.js'
 
 const servidor = express();
 servidor.use(express.json());
+//---
+//app.use(express.urlencoded({ extended: true }));
+//---
 servidor.use(cors());
 
 adicionarRotas(servidor);

@@ -9,7 +9,8 @@ const endpoints = Router();
 
 endpoints.get('/agenda', async (req, resp) => {
     try {
-        let agendas = req.body.date;
+        //let agendas = req.body.date;
+        let agendas = "";
 
         let registros = await consultarAgendaService(agendas);
 

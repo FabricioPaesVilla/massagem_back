@@ -1,12 +1,12 @@
 import connection from './connection.js'
 
 export async function consultarAgenda(date) {
-    const comando = `SELECT id_agenda as id,
-                          date as date,
-                          endereco as endereco,
-                          tipo_massagem as tipo_massagem,
-                          valor as valor,
-                          id_cliente as id_cliente
+    const comando = `SELECT id_agenda ,
+                          date ,
+                          endereco ,
+                          id_massagem,
+                          valor ,
+                          id_cliente 
                      FROM tb_agenda
                      WHERE date like ?`
 
@@ -18,12 +18,12 @@ export async function consultarAgenda(date) {
 }
 
 export async function consultarAgendaPorId(id) {
-    const comando = `SELECT id_agenda as id,
-                          date as date,
-                          endereco as endereco,
-                          tipo_massagem as tipo_massagem,
-                          valor as valor,
-                          id_cliente as id_cliente
+    const comando = `SELECT id_agenda ,
+                          date ,
+                          endereco ,
+                          id_massagem,
+                          valor ,
+                          id_cliente 
                      FROM tb_agenda
                      WHERE id_agenda = ?`
 
@@ -35,12 +35,12 @@ export async function consultarAgendaPorId(id) {
 }
 
 export async function consultarAgendaPorDate(date) {
-    const comando = `SELECT id_agenda as id,
-                          date as date,
-                          endereco as endereco,
-                          tipo_massagem as tipo_massagem,
-                          valor as valor,
-                          id_cliente as id_cliente
+    const comando = `SELECT id_agenda ,
+                          date ,
+                          endereco ,
+                          id_massagem,
+                          valor ,
+                          id_cliente 
                      FROM tb_agenda
                      WHERE date = ?`
 
@@ -52,13 +52,13 @@ export async function consultarAgendaPorDate(date) {
 }
 
 export async function adicionarAgenda(agenda) {
-    const comando = `INSERT INTO tb_agenda (date, endereco, tipo_massagem, valor, id_cliente)
+    const comando = `INSERT INTO tb_agenda (date, endereco, id_massagem, valor, id_cliente)
 VALUES (?,?,?,?,?)`
 
     let [info] = await connection.query(comando, [
                                                     agenda.date, 
                                                     agenda.endereço, 
-                                                    agenda.tipo_massagem, 
+                                                    agenda.id_massagem, 
                                                     agenda.valor, 
                                                     agenda.id_cliente
                                                  ]);
@@ -69,14 +69,14 @@ export async function alterarAgenda(id, agenda) {
     const comando = `UPDATE tb_agenda
                       SET date = ?,
                       endereco = ?,
-                      tipo_massagem = ?,
+                      id_massagem = ?,
                       valor = ?
                       id_cliente = ?,
                       WHERE id_agenda = ?`
     let [info] = await connection.query(comando, [
                                                     agenda.date, 
                                                     agenda.endereço, 
-                                                    agenda.tipo_massagem, 
+                                                    agenda.id_massagem, 
                                                     agenda.valor, 
                                                     agenda.id_cliente, 
                                                     id

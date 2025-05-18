@@ -35,12 +35,12 @@ export async function consultarClientePorId(id) {
 }
 
 export async function consultarClientePorEmail(email) {
-    const comando = `SELECT id_cliente as id
-                            email_cliente as email,
-                            nome as nome,
-                            endereco as endereco,
-                            telefone as telefone,
-                            cpf as cpf
+    const comando = `SELECT id_cliente ,
+                            email_cliente ,
+                            nome ,
+                            endereco ,
+                            telefone ,
+                            cpf 
                         FROM tb_cliente
                         WHERE email_cliente = ?`
     let resposta = await connection.query(comando, [email]);
@@ -52,11 +52,11 @@ export async function consultarClientePorEmail(email) {
 }
 
 export async function adicionarCliente(cliente) {
-    const comando = `INSERT INTO  tb_cliente (email, nome, endereco, telefone, cpf)
+    const comando = `INSERT INTO  tb_cliente (email_cliente, nome, endereco, telefone, cpf)
 VALUES (?,?,?,?,?)`
 
     let [info] = await connection.query(comando, [  
-                                                    cliente.email, 
+                                                    cliente.email_cliente, 
                                                     cliente.nome, 
                                                     cliente.endereco, 
                                                     cliente.telefone, 
@@ -74,6 +74,7 @@ export async function alterarCliente(id, cliente) {
                       cpf = ?
                       WHERE id_cliente = ?`
     let [info] = await connection.query(comando, [
+                                                    cliente.email_cliente,
                                                     cliente.nome, 
                                                     cliente.endereço, 
                                                     cliente.telefone, 

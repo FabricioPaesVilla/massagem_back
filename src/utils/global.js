@@ -9,5 +9,6 @@ global.criarErro = function criarErro(err){
 }
 
 global.logErro = function logErro(err){
-    console.log(horaAtual() + ' ERROR --> ' + err.massage)
+    console.log(horaAtual() + ' ERROR --> ' + err.massage);
+    throw err;
 }

@@ -31,7 +31,7 @@ const upload = multer({ storage });
 endpoints.post('/massagem/:id/imagem', upload.single('imagem'),async (req, resp) => {
     try {
         const { id } = req.params;
-
+        
         //processamento
         const imagem = req.file.filename;
         await alterarImagemMassagem(id, imagem);

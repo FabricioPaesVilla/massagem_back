@@ -1,6 +1,7 @@
 import connection from "./connection.js";
 
 export async function consultarMassagem(titulo) {
+    /*
     const comando = `
                         SELECT id_massagem,
                             titulo,
@@ -15,6 +16,21 @@ export async function consultarMassagem(titulo) {
     let registros = resposta[0];
     
     return registros;
+    */
+    try {
+        const comando = `
+            SELECT id_massagem, titulo, descricao, img
+            FROM tb_massagem
+            WHERE titulo like ?
+        `;
+        console.log("b");
+        let resposta = await connection.query(comando, ['%' + titulo + '%']);
+        console.log("c");
+        return resposta[0];
+    } catch (err) {
+        console.error("Erro na consulta:", err);
+        throw err;
+    }
 }
 
 export async function consultarMassagemPorId(id) {
