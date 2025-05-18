@@ -23,9 +23,9 @@ export async function consultarMassagem(titulo) {
             FROM tb_massagem
             WHERE titulo like ?
         `;
-        console.log("b");
+        
         let resposta = await connection.query(comando, ['%' + titulo + '%']);
-        console.log("c");
+        
         return resposta[0];
     } catch (err) {
         console.error("Erro na consulta:", err);
@@ -107,12 +107,12 @@ export async function removerMassagem(id) {
     return linhasAfetadas
 }
 
-export async function alterarImagemMassagem(id, massagem) {
+export async function alterarImagemMassagem(id, imagem) {
     const comando = `
                     UPDATE tb_massagem
                       SET img = ?
                       WHERE id_massagem = ?`
-    let resposta = await connection.query(comando, [ massagem.img, id ]);
+    let resposta = await connection.query(comando, [ imagem, id ]);
     let info = resposta[0];
 
     let linhasAfetadas = info.affectedRows;

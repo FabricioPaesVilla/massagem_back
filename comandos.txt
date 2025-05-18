@@ -6,4 +6,4 @@ npm install cors
 
 ---------------------
 
-npm i express nodemon dotenv cors multer
+npm i express nodemon dotenv cors multer mysql2

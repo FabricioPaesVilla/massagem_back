@@ -40,12 +40,10 @@ CREATE TABLE tb_agenda (
 
 
 
-
-
 DROP TABLE tb_massagem;
 DROP TABLE tb_agenda;
-INSERT INTO tb_agenda (date, endereco, id_massagem, valor, id_cliente)
-VALUES ('2025-04-27 15:00:00',"",1,1,1);
+INSERT INTO tb_agenda (dia, hora, endereco, tipo_massagem, id_cliente)
+VALUES ('2025-04-27',' 15:00:00',"endereço","massagem",1);
 INSERT INTO  tb_cliente (email_cliente, nome, endereco, telefone, cpf)
 VALUES ("a","b","c","d","e");
 SELECT id_agenda ,date ,endereco ,id_massagem,valor ,id_cliente 

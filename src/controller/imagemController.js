@@ -2,21 +2,17 @@ import { consultarMassagemPorId, alterarImagemMassagem} from "../repository/mass
 import { Router } from "express";
 
 const endpoints = Router();
-//----
+
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-//const fs = require('fs');
-//const path = require('path');
-//const multer = require('multer');
-
 import fs from 'fs';
 import path from 'path';
 import multer from 'multer';
-//----
+
 
 
 const uploadPath = path.join(__dirname, '../../uploads');
@@ -28,12 +24,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-endpoints.post('/massagem/:id/imagem', upload.single('imagem'),async (req, resp) => {
+endpoints.post('/imagem/:id', upload.single('imagem'),async (req, resp) => {
     try {
         const { id } = req.params;
-        
         //processamento
         const imagem = req.file.filename;
+        console.log(imagem);
         await alterarImagemMassagem(id, imagem);
         //-------
 
@@ -45,7 +41,7 @@ endpoints.post('/massagem/:id/imagem', upload.single('imagem'),async (req, resp)
     }
 })
 
-endpoints.put('/massagem/:id/imagem', upload.single('imagem'), async (req, resp) => {
+endpoints.put('/imagem/:id', upload.single('imagem'), async (req, resp) => {
     try {
         const { id } = req.params;
 
@@ -71,7 +67,7 @@ endpoints.put('/massagem/:id/imagem', upload.single('imagem'), async (req, resp)
     }
 })
 
-endpoints.delete('/massagem/:id/imagem', async (req, resp) => {
+endpoints.delete('/imagem/:id', async (req, resp) => {
     try {
         const { id } = req.params;
 

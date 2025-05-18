@@ -1,16 +1,16 @@
 import connection from './connection.js'
 
-export async function consultarAgenda(date) {
-    const comando = `SELECT id_agenda ,
-                          date ,
-                          endereco ,
-                          id_massagem,
-                          valor ,
+export async function consultarAgenda(dia) {
+    const comando = `SELECT id_agenda,
+                          dia,
+                          hora,
+                          endereco,
+                          tipo_massagem,
                           id_cliente 
                      FROM tb_agenda
-                     WHERE date like ?`
+                     WHERE dia like ?`
 
-    let resposta = await connection.query(comando, ['%' + date + '%']);
+    let resposta = await connection.query(comando, ['%' + dia + '%']);
 
     let registros = resposta[0];
 
@@ -18,11 +18,11 @@ export async function consultarAgenda(date) {
 }
 
 export async function consultarAgendaPorId(id) {
-    const comando = `SELECT id_agenda ,
-                          date ,
-                          endereco ,
-                          id_massagem,
-                          valor ,
+    const comando = `SELECT id_agenda,
+                          dia,
+                          hora,
+                          endereco,
+                          tipo_massagem,
                           id_cliente 
                      FROM tb_agenda
                      WHERE id_agenda = ?`
@@ -34,17 +34,17 @@ export async function consultarAgendaPorId(id) {
     return registros;
 }
 
-export async function consultarAgendaPorDate(date) {
-    const comando = `SELECT id_agenda ,
-                          date ,
-                          endereco ,
-                          id_massagem,
-                          valor ,
+export async function consultarAgendaPorDia(dia) {
+    const comando = `SELECT id_agenda,
+                          dia,
+                          hora,
+                          endereco,
+                          tipo_massagem,
                           id_cliente 
                      FROM tb_agenda
-                     WHERE date = ?`
+                     WHERE dia = ?`
 
-    let resposta = await connection.query(comando, [date]);
+    let resposta = await connection.query(comando, [dia]);
 
     let registros = resposta[0];
 
@@ -52,14 +52,14 @@ export async function consultarAgendaPorDate(date) {
 }
 
 export async function adicionarAgenda(agenda) {
-    const comando = `INSERT INTO tb_agenda (date, endereco, id_massagem, valor, id_cliente)
+    const comando = `INSERT INTO tb_agenda (dia, hora, endereco, tipo_massagem, id_cliente)
 VALUES (?,?,?,?,?)`
 
     let [info] = await connection.query(comando, [
-                                                    agenda.date, 
-                                                    agenda.endereço, 
-                                                    agenda.id_massagem, 
-                                                    agenda.valor, 
+                                                    agenda.dia,
+                                                    agenda.hora, 
+                                                    agenda.endereco, 
+                                                    agenda.tipo_massagem,  
                                                     agenda.id_cliente
                                                  ]);
     return info.insertId;
@@ -67,17 +67,17 @@ VALUES (?,?,?,?,?)`
 
 export async function alterarAgenda(id, agenda) {
     const comando = `UPDATE tb_agenda
-                      SET date = ?,
+                      SET dia = ?,
+                      hora = ?
                       endereco = ?,
-                      id_massagem = ?,
-                      valor = ?
-                      id_cliente = ?,
+                      tipo_massagem = ?,
+                      id_cliente = ?
                       WHERE id_agenda = ?`
     let [info] = await connection.query(comando, [
-                                                    agenda.date, 
+                                                    agenda.dia,
+                                                    agenda.hora, 
                                                     agenda.endereço, 
-                                                    agenda.id_massagem, 
-                                                    agenda.valor, 
+                                                    agenda.tipo_massagem, 
                                                     agenda.id_cliente, 
                                                     id
                                                  ]);

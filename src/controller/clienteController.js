@@ -7,7 +7,7 @@ const endpoints = Router();
 
 endpoints.get('/cliente', async (req, resp) => {
     try {
-        let clientes = req.body.nome;
+        let clientes = req.query.nome;
 
         let registros = await consultarClienteService(clientes);
 
@@ -20,7 +20,7 @@ endpoints.get('/cliente', async (req, resp) => {
 
 endpoints.get('/cliente/:id', async (req, resp) => {
     try {
-        let clientes = req.body.id;
+        let clientes = req.params.id;
 
         let registros = await consultarClientePorIdService(clientes);
 

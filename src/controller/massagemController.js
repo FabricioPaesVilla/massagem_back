@@ -5,15 +5,13 @@ import adicionarMassagemService from "../services/massagem/adicionarMassagemServ
 import AlterarMassagemService from "../services/massagem/alterarMassagemService.js";
 import removerMassagemService from "../services/massagem/removerMassagemService.js";
 
-import multer from 'multer';
-
 const endpoints = Router();
 
 endpoints.get('/massagem', async (req, resp) => {
     try {
-        let massagems = req.body.titulo;
+        let titulo = req.query.titulo;
 
-        let registros = await consultarMassagemService(massagems);
+        let registros = await consultarMassagemService(titulo);
 
         resp.send(registros);
     } catch (err) {
@@ -24,7 +22,7 @@ endpoints.get('/massagem', async (req, resp) => {
 
 endpoints.get('/massagem/:id', async (req, resp) => {
     try {
-        let massagems = req.body.id;
+        let massagems = req.params.id;
  
         let registros = await consultarMassagemPorIdService(massagems);
 
@@ -70,22 +68,6 @@ endpoints.delete('/massagem/:id', async (req, resp) => {
     
         await removerMassagemService(id);
     
-        resp.status(204).send();
-    } catch (err) {
-        logErro(err)
-        resp.status(400).send(criarErro(err))
-    }
-})
-
-//ainda pensando em como vai salvar a imagem
-let uploadMassagem = multer({ dest: './storage/massagem'})
-endpoints.put('/massagem/:id/imagem', uploadMassagem.single('imagem'),async (req, resp) => {
-    try {
-        let id = req.params.id;
-        let caminhoImagem = req.filter.path;
-
-        await alterarImagemMassagemService(id, caminhoImagem);
-
         resp.status(204).send();
     } catch (err) {
         logErro(err)

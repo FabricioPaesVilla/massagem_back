@@ -1,7 +1,7 @@
 import { adicionar, alterar, listar, remover, verificar} from "../repository/admRepository.js";
 import { Router } from "express";
 const endpoints = Router();
-
+/*
 endpoints.get('/adm', async (req, resp) => {
     let adms = await listar();
     resp.send(adms);
@@ -41,5 +41,5 @@ endpoints.post('/admLogin', async (req, resp) => {
     let admVerificado = await verificar(email, password);
     resp.send({admVerificado});
 })
-
+*/
 export default endpoints;

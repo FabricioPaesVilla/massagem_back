@@ -9,8 +9,7 @@ const endpoints = Router();
 
 endpoints.get('/agenda', async (req, resp) => {
     try {
-        //let agendas = req.body.date;
-        let agendas = "";
+        let agendas = req.query.date;
 
         let registros = await consultarAgendaService(agendas);
 
@@ -23,7 +22,7 @@ endpoints.get('/agenda', async (req, resp) => {
 
 endpoints.get('/agenda/:id', async (req, resp) => {
     try {
-        let agendas = req.body.id;
+        let agendas = req.params.id;
 
         let registros = await consultarAgendaPorIdService(agendas);
 

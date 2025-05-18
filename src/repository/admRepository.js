@@ -1,5 +1,5 @@
 import connection from './connection.js'
-
+/*----------------*/
 export async function listar() {
     const comando = `SELECT email as email,
                             senha as senha,
@@ -50,3 +50,4 @@ export async function verificar(email, password) {
         return false;
      }
 }
+/*----------------*/
