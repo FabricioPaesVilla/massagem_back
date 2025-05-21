@@ -12,7 +12,7 @@ export function validarNovaAgenda(cliente) {
     if (!cliente.tipo_massagem) {
         throw new Error('massagems da agenda obrigatorio');
     }
-    if (!cliente.id_cliente) {
+    if (!cliente.nome_cliente) {
         throw new Error('id_cliente da agenda obrigatorio');
     }
 }

@@ -8,6 +8,14 @@ CREATE TABLE tb_adm (
 );
 DROP TABLE tb_adm;
 
+CREATE TABLE tb_cliente(
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    email_cliente VARCHAR(100) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    endereco VARCHAR(100),
+    telefone VARCHAR(100) NOT NULL,
+    cpf VARCHAR(100) NOT NULL
+);
 -----------------------------
 
 
@@ -18,14 +26,6 @@ CREATE TABLE tb_massagem (
     img VARCHAR(100) 
 );
 
-CREATE TABLE tb_cliente(
-    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    email_cliente VARCHAR(100) NOT NULL,
-    nome VARCHAR(100) NOT NULL,
-    endereco VARCHAR(100),
-    telefone VARCHAR(100) NOT NULL,
-    cpf VARCHAR(100) NOT NULL
-);
 
 CREATE TABLE tb_agenda (
     id_agenda INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,8 +33,7 @@ CREATE TABLE tb_agenda (
     hora TIME NOT NULL, 
     endereco VARCHAR(100) NOT NULL,
     tipo_massagem VARCHAR(100) NOT NULL,
-    id_cliente int NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES tb_cliente(id_cliente)
+    nome_cliente VARCHAR(100) NOT NULL
 );
 
 
@@ -42,8 +41,8 @@ CREATE TABLE tb_agenda (
 
 DROP TABLE tb_massagem;
 DROP TABLE tb_agenda;
-INSERT INTO tb_agenda (dia, hora, endereco, tipo_massagem, id_cliente)
-VALUES ('2025-04-27',' 15:00:00',"endereço","massagem",1);
+INSERT INTO tb_agenda (dia, hora, endereco, tipo_massagem, nome_cliente)
+VALUES ('2025-04-27',' 15:00:00',"endereço","massagem","cliente");
 INSERT INTO  tb_cliente (email_cliente, nome, endereco, telefone, cpf)
 VALUES ("a","b","c","d","e");
 SELECT id_agenda ,date ,endereco ,id_massagem,valor ,id_cliente 

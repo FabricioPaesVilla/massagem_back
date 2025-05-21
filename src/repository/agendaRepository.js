@@ -6,7 +6,7 @@ export async function consultarAgenda(dia) {
                           hora,
                           endereco,
                           tipo_massagem,
-                          id_cliente 
+                          nome_cliente 
                      FROM tb_agenda
                      WHERE dia like ?`
 
@@ -23,7 +23,7 @@ export async function consultarAgendaPorId(id) {
                           hora,
                           endereco,
                           tipo_massagem,
-                          id_cliente 
+                          nome_cliente 
                      FROM tb_agenda
                      WHERE id_agenda = ?`
 
@@ -40,7 +40,7 @@ export async function consultarAgendaPorDia(dia) {
                           hora,
                           endereco,
                           tipo_massagem,
-                          id_cliente 
+                          nome_cliente 
                      FROM tb_agenda
                      WHERE dia = ?`
 
@@ -52,7 +52,7 @@ export async function consultarAgendaPorDia(dia) {
 }
 
 export async function adicionarAgenda(agenda) {
-    const comando = `INSERT INTO tb_agenda (dia, hora, endereco, tipo_massagem, id_cliente)
+    const comando = `INSERT INTO tb_agenda (dia, hora, endereco, tipo_massagem, nome_cliente)
 VALUES (?,?,?,?,?)`
 
     let [info] = await connection.query(comando, [
@@ -60,7 +60,7 @@ VALUES (?,?,?,?,?)`
                                                     agenda.hora, 
                                                     agenda.endereco, 
                                                     agenda.tipo_massagem,  
-                                                    agenda.id_cliente
+                                                    agenda.nome_cliente
                                                  ]);
     return info.insertId;
 }
@@ -71,14 +71,14 @@ export async function alterarAgenda(id, agenda) {
                       hora = ?
                       endereco = ?,
                       tipo_massagem = ?,
-                      id_cliente = ?
+                      nome_cliente = ?
                       WHERE id_agenda = ?`
     let [info] = await connection.query(comando, [
                                                     agenda.dia,
                                                     agenda.hora, 
                                                     agenda.endereço, 
                                                     agenda.tipo_massagem, 
-                                                    agenda.id_cliente, 
+                                                    agenda.nome_cliente, 
                                                     id
                                                  ]);
     return info.affectedRows;
