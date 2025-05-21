@@ -27,13 +27,12 @@ const upload = multer({ storage });
 endpoints.post('/imagem/:id', upload.single('imagem'),async (req, resp) => {
     try {
         const { id } = req.params;
+
         //processamento
         const imagem = req.file.filename;
-        console.log(imagem);
         await alterarImagemMassagem(id, imagem);
         //-------
 
-    
         resp.status(204).send();
     } catch (err) {
         logErro(err)
@@ -58,7 +57,6 @@ endpoints.put('/imagem/:id', upload.single('imagem'), async (req, resp) => {
         const novaImagem = req.file.filename;
         await alterarImagemMassagem(id, novaImagem);
         //----------
-
 
         resp.status(204).send();
     } catch (err) {
