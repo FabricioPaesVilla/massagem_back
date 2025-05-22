@@ -34,12 +34,12 @@ export async function consultarMassagem(titulo) {
 }
 
 export async function consultarMassagemPorId(id) {
-    const comando = `SELECT id_massagem as id,
-                            titulo as titulo,
-                            descricao as descricao,
-                            img as img
+    const comando = `SELECT id_massagem,
+                            titulo,
+                            descricao,
+                            img 
                             FROM tb_massagem
-                            WHERE id = ?`
+                            WHERE id_massagem = ?`
     
     let resposta = await connection.query(comando, [id]);
     
@@ -50,10 +50,10 @@ export async function consultarMassagemPorId(id) {
 
 export async function consultarMassagemPorTitulo(titulo) {
     const comando = ` 
-                        SELECT id_massagem as id,
-                            titulo as titulo,
-                            descricao as descricao,
-                            img as img
+                        SELECT id_massagem,
+                            titulo,
+                            descricao,
+                            img 
                         FROM tb_massagem
                         WHERE titulo = ?`
     

@@ -68,7 +68,7 @@ VALUES (?,?,?,?,?)`
 export async function alterarAgenda(id, agenda) {
     const comando = `UPDATE tb_agenda
                       SET dia = ?,
-                      hora = ?
+                      hora = ?,
                       endereco = ?,
                       tipo_massagem = ?,
                       nome_cliente = ?
@@ -76,7 +76,7 @@ export async function alterarAgenda(id, agenda) {
     let [info] = await connection.query(comando, [
                                                     agenda.dia,
                                                     agenda.hora, 
-                                                    agenda.endereço, 
+                                                    agenda.endereco, 
                                                     agenda.tipo_massagem, 
                                                     agenda.nome_cliente, 
                                                     id
